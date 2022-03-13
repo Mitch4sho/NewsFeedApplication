@@ -1,10 +1,9 @@
-import express, { Application, Request, Response, NextFunction } from "express";
+require("dotenv").config();
+const express = require("express");
+import { Application } from "express";
 
 const app: Application = express();
 
-// Main route
-app.get("/", (req: Request, res: Response) => {
-  res.send("hello");
-});
+app.use("/api/get-articles", require("./routes/articleRoutes"));
 
 app.listen(3001, () => console.log("server running on 3001"));
