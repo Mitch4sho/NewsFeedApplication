@@ -5,7 +5,7 @@ import ArticlePage from "./pages/ArticlePage";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Router>
         <h1>Oliver News</h1>
         <Routes>

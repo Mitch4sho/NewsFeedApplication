@@ -1,10 +1,10 @@
-const express = require("express");
-const app = express();
+import express, { Application, Request, Response, NextFunction } from "express";
 
-app.get("/", (req, res) => {
-  res.send("hello world");
+const app: Application = express();
+
+// Main route
+app.get("/", (req: Request, res: Response) => {
+  res.send("hello");
 });
 
-app.listen(3001, () => {
-  console.log("running on port 3001");
-});
+app.listen(3001, () => console.log("server running on 3001"));
