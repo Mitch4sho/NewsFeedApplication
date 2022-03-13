@@ -3,6 +3,7 @@ import axios from "axios";
 
 interface Json {
   message: string;
+  data: Object;
 }
 
 type Send<T = Response> = (body?: Json) => T;
@@ -12,28 +13,22 @@ interface ArticleResponse extends Response {
 }
 
 const API_KEY = process.env.API_KEY;
+const url = `https://newsapi.org/v2/everything?q=kanye&pagesize=10&apiKey=${API_KEY}`;
 
 // get all articles
-const getArticles = (req: Request, res: ArticleResponse) => {
-  res.json({ message: "get articles" });
-};
-
-const getData = async () => {
-  const url = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}`;
+const getArticles = async (req: Request, res: ArticleResponse) => {
+  let data;
   try {
     const res = await axios.get(url);
-    console.log(res.data);
+    data = res.data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    return {};
   }
-};
 
-// get single article
-const getArticle = (req: Request, res: ArticleResponse) => {
-  res.json({ message: "get single article" });
+  return res.json({ message: "get articles", data: data });
 };
 
 module.exports = {
   getArticles,
-  getArticle,
 };
