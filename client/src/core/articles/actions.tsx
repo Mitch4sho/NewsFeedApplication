@@ -1,9 +1,10 @@
-import articles from "../api/articles";
+import ArticlesAPI from "../api/articles";
 
-export function getArticles() {
-  return testCall();
-}
+const articles = new ArticlesAPI();
 
-function testCall() {
-  return [{ text: "test from actions" }];
+export async function getArticles() {
+  const data = articles.getArticles();
+
+  // TODO: structure data
+  return data;
 }

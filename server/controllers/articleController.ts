@@ -16,18 +16,22 @@ const API_KEY = process.env.API_KEY;
 const url = `https://newsapi.org/v2/everything?q=kanye&pagesize=10&apiKey=${API_KEY}`;
 
 // get all articles
-const getArticles = async (req: Request, res: ArticleResponse) => {
+const getArticles = async (
+  req: Request,
+  res: ArticleResponse
+): Promise<any> => {
   let data;
   try {
-    const res = await axios.get(url);
-    data = res.data;
     console.log("getting articles");
+    const res = await axios.get(url);
+    data = res.data.articles;
+    console.log("returning articles");
   } catch (error) {
     console.log(error);
-    return {};
+    return [];
   }
 
-  return res.json({ message: "get articles", data: data });
+  return res.json({ message: "Success", data: data });
 };
 
 module.exports = {

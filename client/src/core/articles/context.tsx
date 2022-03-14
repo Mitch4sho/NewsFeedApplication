@@ -6,11 +6,7 @@ const ArticleContext = createContext<any>({}); // TODO: need to fix types
 // TODO: need to fix types
 export const Provider: React.FunctionComponent<{}> = ({ children }) => {
   const initialState = {
-    articles: [
-      {
-        text: "this is from context",
-      },
-    ],
+    articles: [],
   };
 
   const [state, dispatch] = useReducer(ArticlesReducer, initialState);

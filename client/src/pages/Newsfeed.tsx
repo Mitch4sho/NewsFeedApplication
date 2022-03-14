@@ -3,15 +3,15 @@ import ArticleContext from "../core/articles/context";
 import { getArticles } from "../core/articles/actions";
 
 interface ArticleType {
-  text: string;
+  author: string;
 }
 
 export default function Newsfeed() {
   const { articles, dispatch } = useContext(ArticleContext);
 
   const getData = async () => {
-    const data = await getArticles();
-    dispatch({ type: "GET_ARTICLES", payload: data });
+    const articles = await getArticles();
+    dispatch({ type: "GET_ARTICLES", payload: articles.data });
   };
 
   return (
@@ -20,7 +20,7 @@ export default function Newsfeed() {
       <button onClick={getData}>Get articles</button>
       <h1>
         {articles.map((article: ArticleType, id: number) => (
-          <li key={id}>{article.text}</li>
+          <li key={id}>{article.author}</li>
         ))}
       </h1>
     </div>
