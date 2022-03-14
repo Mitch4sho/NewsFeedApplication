@@ -21,6 +21,7 @@ const getArticles = async (req: Request, res: ArticleResponse) => {
   try {
     const res = await axios.get(url);
     data = res.data;
+    console.log("getting articles");
   } catch (error) {
     console.log(error);
     return {};
