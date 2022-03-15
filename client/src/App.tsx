@@ -11,6 +11,7 @@ function App() {
       <Provider>
         <Router>
           <Header />
+          <h1>News Feed</h1>
           <Routes>
             <Route path="/" element={<Newsfeed />} />
             <Route path="/article" element={<ArticlePage />} />

@@ -13,7 +13,7 @@ interface ArticleResponse extends Response {
 }
 
 const API_KEY = process.env.API_KEY;
-const url = `https://newsapi.org/v2/everything?q=kanye&pagesize=10&apiKey=${API_KEY}`;
+const url = `https://newsapi.org/v2/everything?q=kanye&pagesize=6&apiKey=${API_KEY}`;
 
 // get all articles
 const getArticles = async (
