@@ -3,6 +3,7 @@ import ArticleListItem from "../components/ArticleListItem";
 import ArticleContext from "../core/articles/context";
 import { getArticles } from "../core/articles/actions";
 import { Box } from "@mui/system";
+import { List } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
 export default function Newsfeed() {

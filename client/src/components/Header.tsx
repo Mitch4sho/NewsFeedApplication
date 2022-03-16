@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/system";
+import Container from "@mui/material/Container";
+import { Stack } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { getDate } from "../utils";
 
 export default function Header() {
@@ -11,16 +14,17 @@ export default function Header() {
   }, []);
 
   return (
-    <Box
+    <Stack
+      justifyContent="space-between"
+      direction="row"
+      spacing={2}
       sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "10px",
+        mb: 2,
         borderBottom: 1,
       }}
     >
-      <h1>{date}</h1>
-      <h1>News</h1>
-    </Box>
+      <Typography variant="h1">{date}</Typography>
+      <Typography variant="h1">News</Typography>
+    </Stack>
   );
 }

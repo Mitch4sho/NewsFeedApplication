@@ -1,6 +1,7 @@
 import React from "react";
 import ImageComponent from "./ImageComponent";
 import { Box } from "@mui/system";
+import Typography from "@mui/material/Typography";
 
 type Props = {
   title: string;
@@ -19,8 +20,12 @@ export default function ArticleListItem({
   urlToImage,
 }: Props): JSX.Element {
   // TODO: add a click function to route to single page article
+  const handleClick = () => {
+    console.log("re route to single page");
+  };
   return (
     <Box
+      onClick={handleClick}
       component="li"
       sx={{
         border: 1,
@@ -31,15 +36,15 @@ export default function ArticleListItem({
       }}
     >
       <ImageComponent image={urlToImage} />
-      <Box component="p" sx={{ fontSize: 12 }}>
+      <Typography paragraph gutterBottom={true} sx={{ fontSize: 12 }}>
         {source.name}
-      </Box>
-      <Box component="p" sx={{ fontSize: 24 }}>
+      </Typography>
+      <Typography variant="h3" gutterBottom={true} sx={{ fontSize: 24 }}>
         {title}
-      </Box>
-      <Box component="p" sx={{ fontSize: 12 }}>
+      </Typography>
+      <Typography paragraph gutterBottom={true} sx={{ fontSize: 12 }}>
         {description}
-      </Box>
+      </Typography>
     </Box>
   );
 }
