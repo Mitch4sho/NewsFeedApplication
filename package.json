@@ -1,5 +1,5 @@
 {
-  "name": "newsapplication",
+  "name": "newsfeedapplication",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mitch4sho/NewsfeedApplicaiton.git"
+    "url": "git+https://github.com/Mitch4sho/NewsFeedApplication.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Mitch4sho/NewsfeedApplicaiton/issues"
+    "url": "https://github.com/Mitch4sho/NewsFeedApplication/issues"
   },
-  "homepage": "https://github.com/Mitch4sho/NewsfeedApplicaiton#readme",
+  "homepage": "https://github.com/Mitch4sho/NewsFeedApplication#readme",
   "dependencies": {
     "axios": "^0.26.1",
     "cors": "^2.8.5",
