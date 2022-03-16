@@ -1,6 +1,5 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Newsfeed from "./pages/Newsfeed";
+import NewsFeed from "./pages/NewsFeed";
 import ArticlePage from "./pages/ArticlePage";
 import Header from "./components/Header";
 import Container from "@mui/material/Container";
@@ -13,7 +12,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Newsfeed />} />
+            <Route path="/" element={<NewsFeed />} />
             <Route path="/article" element={<ArticlePage />} />
           </Routes>
         </Router>

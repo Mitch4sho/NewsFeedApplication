@@ -1,5 +1,8 @@
-import React from "react";
+import { useContext } from "react";
+import ArticleContext from "../core/articles/context";
 import ImageComponent from "./ImageComponent";
+import { useNavigate } from "react-router-dom";
+import { getArticle } from "../core/articles/actions";
 import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
 
@@ -11,6 +14,7 @@ type Props = {
     name: string;
   };
   urlToImage: string;
+  idx: number;
 };
 
 export default function ArticleListItem({
@@ -18,11 +22,17 @@ export default function ArticleListItem({
   description,
   source,
   urlToImage,
+  idx,
 }: Props): JSX.Element {
-  // TODO: add a click function to route to single page article
-  const handleClick = () => {
-    console.log("re route to single page");
+  const { articles, dispatch } = useContext(ArticleContext);
+  let navigate = useNavigate();
+
+  const handleClick = async () => {
+    const article = await getArticle(articles, idx);
+    dispatch({ type: "GET_ARTICLE", payload: article });
+    navigate("/article");
   };
+
   return (
     <Box
       onClick={handleClick}
@@ -33,16 +43,24 @@ export default function ArticleListItem({
         listStyle: "none",
         padding: 5,
         borderRadius: 5,
+
+        "&:hover": {
+          cursor: "pointer",
+        },
       }}
     >
       <ImageComponent image={urlToImage} />
-      <Typography paragraph gutterBottom={true} sx={{ fontSize: 12 }}>
+      <Typography
+        paragraph
+        gutterBottom={true}
+        sx={{ fontSize: 12, textTransform: "uppercase" }}
+      >
         {source.name}
       </Typography>
       <Typography variant="h3" gutterBottom={true} sx={{ fontSize: 24 }}>
         {title}
       </Typography>
-      <Typography paragraph gutterBottom={true} sx={{ fontSize: 12 }}>
+      <Typography variant="body1" gutterBottom={true} sx={{ fontfontSize: 12 }}>
         {description}
       </Typography>
     </Box>

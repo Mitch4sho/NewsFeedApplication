@@ -9,6 +9,12 @@ const ArticlesReducer = (state: any, action: ActionTypes) => {
       return {
         ...state,
         articles: action.payload,
+        article: {},
+      };
+    case "GET_ARTICLE":
+      return {
+        ...state,
+        article: action.payload,
       };
     default:
       return state;
