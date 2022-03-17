@@ -1,4 +1,4 @@
-export function getDate(): string {
+export function getDate(str?: string): string {
   const MONTHS = [
     "January",
     "February",
@@ -14,7 +14,7 @@ export function getDate(): string {
     "December",
   ];
 
-  const DATE = new Date();
+  const DATE = str ? new Date(str) : new Date();
   const date = DATE.getDate();
   const month = MONTHS[DATE.getMonth()];
 

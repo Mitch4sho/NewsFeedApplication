@@ -11,6 +11,8 @@ export default function ImageComponent({ image }: Props) {
       component="img"
       sx={{
         width: "100%",
+        borderRadius: 10,
+        mb: 3,
       }}
       alt=""
       src={image}
