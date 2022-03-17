@@ -9,12 +9,13 @@ export default function NewsFeed(): JSX.Element {
   const { articles, dispatch } = useContext(ArticleContext);
 
   const getData = async () => {
+    console.log("fetching articles");
     const articles = await getArticles();
     dispatch({ type: "GET_ARTICLES", payload: articles.data });
   };
 
   useEffect(() => {
-    getData();
+    if (!articles.length) getData();
   }, []);
 
   return (
