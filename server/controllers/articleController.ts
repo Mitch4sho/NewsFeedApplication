@@ -23,12 +23,10 @@ const getArticles = async (
   let data;
 
   try {
-    console.log("getting articles");
     const res = await axios.get(url);
     data = res.data.articles;
-    console.log("returning articles");
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return [];
   }
 
@@ -47,7 +45,7 @@ const getSearchedArticles = async (
     const res = await axios.get(url);
     data = res.data.articles;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return [];
   }
 

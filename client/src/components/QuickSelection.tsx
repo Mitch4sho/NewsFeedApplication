@@ -19,7 +19,6 @@ export default function QuickSelection(): JSX.Element {
       articles = await getArticles();
     } else {
       articles = await getClickedArticles(query);
-      console.log(articles);
     }
 
     dispatch({ type: "GET_ARTICLES", payload: articles.data });
