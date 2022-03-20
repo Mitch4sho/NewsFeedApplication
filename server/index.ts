@@ -10,6 +10,7 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
 app.use("/api/get-articles", require("./routes/articleRoutes"));
 
 app.get("/", (req, res) => {

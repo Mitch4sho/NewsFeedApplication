@@ -13,14 +13,15 @@ interface ArticleResponse extends Response {
 }
 
 const API_KEY = process.env.API_KEY;
-const url = `https://newsapi.org/v2/everything?q=kanye&pagesize=6&apiKey=${API_KEY}`;
 
 // get all articles
 const getArticles = async (
   req: Request,
   res: ArticleResponse
 ): Promise<any> => {
+  const url = `https://newsapi.org/v2/top-headlines?country=us&pagesize=6&apiKey=${API_KEY}`;
   let data;
+
   try {
     console.log("getting articles");
     const res = await axios.get(url);
@@ -34,6 +35,26 @@ const getArticles = async (
   return res.json({ message: "Success", data: data });
 };
 
+const getSearchedArticles = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const query = req.route.path.split("/").join("");
+  const url = `https://newsapi.org/v2/everything?q=${query}&pagesize=6&apiKey=${API_KEY}`;
+  let data;
+
+  try {
+    const res = await axios.get(url);
+    data = res.data.articles;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+
+  return res.json({ message: "Success", data: data });
+};
+
 module.exports = {
   getArticles,
+  getSearchedArticles,
 };
