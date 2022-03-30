@@ -60,7 +60,7 @@ export default function ArticleListItem({
       <Typography variant="h3" gutterBottom={true} sx={{ fontSize: 24 }}>
         {title}
       </Typography>
-      <Typography variant="body1" gutterBottom={true} sx={{ fontfontSize: 12 }}>
+      <Typography variant="body1" gutterBottom={true} sx={{ fontSize: 12 }}>
         {description}
       </Typography>
     </Box>

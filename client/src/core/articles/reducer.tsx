@@ -1,6 +1,10 @@
 interface ActionTypes {
   type: string;
-  payload: Object;
+  payload: {
+    page?: number;
+    data?: [];
+    query?: string;
+  };
 }
 
 const ArticlesReducer = (state: any, action: ActionTypes) => {
@@ -8,13 +12,21 @@ const ArticlesReducer = (state: any, action: ActionTypes) => {
     case "GET_ARTICLES":
       return {
         ...state,
-        articles: action.payload,
+        page: 1,
+        articles: action.payload.data,
         article: {},
+        currentQuery: action.payload.query,
       };
     case "GET_ARTICLE":
       return {
         ...state,
         article: action.payload,
+      };
+    case "SET_PAGE":
+      return {
+        ...state,
+        page: action.payload.page,
+        articles: action.payload.data,
       };
     default:
       return state;

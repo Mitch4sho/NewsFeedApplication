@@ -8,8 +8,10 @@ export const Provider: React.FunctionComponent<{}> = ({
   children,
 }): JSX.Element => {
   const initialState = {
+    page: 1,
     articles: [],
     article: {},
+    currentQuery: "top-headlines",
   };
 
   const [state, dispatch] = useReducer(ArticlesReducer, initialState);

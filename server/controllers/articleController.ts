@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import axios from "axios";
 
 interface Json {
-  message: string;
   data: Object;
+  query: string;
 }
 
 type Send<T = Response> = (body?: Json) => T;
@@ -19,9 +19,20 @@ const getArticles = async (
   req: Request,
   res: ArticleResponse
 ): Promise<any> => {
-  const url = `https://newsapi.org/v2/top-headlines?country=us&pagesize=6&apiKey=${API_KEY}`;
-  let data;
+  let query;
+  if (req.query && req.query.q) {
+    query = (req.query as any).q;
+  }
 
+  let url;
+
+  if (query === "top-headlines") {
+    url = `https://newsapi.org/v2/${query}?country=us&pagesize=15&apiKey=${API_KEY}`;
+  } else {
+    url = `https://newsapi.org/v2/everything?q=${query}&pagesize=15&apiKey=${API_KEY}`;
+  }
+
+  let data;
   try {
     const res = await axios.get(url);
     data = res.data.articles;
@@ -30,29 +41,37 @@ const getArticles = async (
     return [];
   }
 
-  return res.json({ message: "Success", data: data });
+  return res.json({ data: data, query: query });
 };
 
-const getSearchedArticles = async (
-  req: Request,
-  res: Response
-): Promise<any> => {
-  const query = req.route.path.split("/").join("");
-  const url = `https://newsapi.org/v2/everything?q=${query}&pagesize=6&apiKey=${API_KEY}`;
-  let data;
+const getPage = async (req: Request, res: Response): Promise<any> => {
+  let pageNumber = req.query.pageNumber;
+  const query = req.query.q;
+  if (pageNumber && pageNumber <= "0") pageNumber = "1";
 
+  let url;
+  if (query === "top-headlines") {
+    url = `https://newsapi.org/v2/${query}?country=us&pagesize=15&page=${pageNumber}&apiKey=${API_KEY}`;
+  } else {
+    url = `https://newsapi.org/v2/everything?q=${query}&pagesize=15&page=${pageNumber}&apiKey=${API_KEY}`;
+  }
+
+  let data;
   try {
     const res = await axios.get(url);
     data = res.data.articles;
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return [];
   }
 
-  return res.json({ message: "Success", data: data });
+  return res.json({
+    message: "Page",
+    data: { data: data, page: pageNumber },
+  });
 };
 
 module.exports = {
   getArticles,
-  getSearchedArticles,
+  getPage,
 };

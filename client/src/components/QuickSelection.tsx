@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Button, Stack } from "@mui/material";
-import { getClickedArticles, getArticles } from "../core/articles/actions";
+import { getArticles } from "../core/articles/actions";
 import ArticleContext from "../core/articles/context";
 
 export default function QuickSelection(): JSX.Element {
@@ -14,14 +14,9 @@ export default function QuickSelection(): JSX.Element {
   ]);
 
   const handleQuery = async (query: string) => {
-    let articles;
-    if (query === "Top News") {
-      articles = await getArticles();
-    } else {
-      articles = await getClickedArticles(query);
-    }
-
-    dispatch({ type: "GET_ARTICLES", payload: articles.data });
+    query = query === "Top News" ? "top-headlines" : query;
+    let data = await getArticles(query.toLowerCase());
+    dispatch({ type: "GET_ARTICLES", payload: data });
   };
 
   return (

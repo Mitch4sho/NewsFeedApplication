@@ -5,7 +5,7 @@ type Props = {
   image: string;
 };
 
-export default function ImageComponent({ image }: Props) {
+export default function ImageComponent({ image }: Props): JSX.Element {
   return (
     <Box
       component="img"
