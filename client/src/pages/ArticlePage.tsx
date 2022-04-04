@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import ArticleContext from "../core/articles/context";
 import ImageComponent from "../components/ImageComponent";
 import { getDate } from "../utils";
@@ -17,6 +17,13 @@ export default function ArticlePage(): JSX.Element {
       <Typography variant="h1" gutterBottom={true}>
         {source.name}
       </Typography>
+      <Button
+        onClick={() => navigation("/")}
+        variant="contained"
+        sx={{ mb: 3 }}
+      >
+        Go back to news feed
+      </Button>
       <ImageComponent image={urlToImage} />
       <Typography variant="h3" gutterBottom={true}>
         {title}
