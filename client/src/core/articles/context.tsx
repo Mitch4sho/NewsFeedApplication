@@ -1,9 +1,8 @@
 import { createContext, useReducer } from "react";
 import ArticlesReducer from "./reducer";
 
-const ArticleContext = createContext<any>({}); // TODO: need to fix types
+const ArticleContext = createContext<any>({});
 
-// TODO: need to fix types
 export const Provider: React.FunctionComponent<{}> = ({
   children,
 }): JSX.Element => {
@@ -12,6 +11,8 @@ export const Provider: React.FunctionComponent<{}> = ({
     articles: [],
     article: {},
     currentQuery: "top-headlines",
+    loading: false,
+    hasNextPage: true,
   };
 
   const [state, dispatch] = useReducer(ArticlesReducer, initialState);

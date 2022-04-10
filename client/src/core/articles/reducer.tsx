@@ -2,8 +2,10 @@ interface ActionTypes {
   type: string;
   payload: {
     page?: number;
-    data?: [];
+    articles: [];
     query?: string;
+    loading?: boolean;
+    hasNextPage?: boolean;
   };
 }
 
@@ -13,9 +15,10 @@ const ArticlesReducer = (state: any, action: ActionTypes) => {
       return {
         ...state,
         page: 1,
-        articles: action.payload.data,
+        articles: action.payload.articles,
         article: {},
         currentQuery: action.payload.query,
+        hasNextPage: true,
       };
     case "GET_ARTICLE":
       return {
@@ -26,7 +29,13 @@ const ArticlesReducer = (state: any, action: ActionTypes) => {
       return {
         ...state,
         page: action.payload.page,
-        articles: action.payload.data,
+        articles: [...state.articles, ...action.payload.articles],
+        loading: action.payload.loading,
+      };
+    case "NEXT_PAGE":
+      return {
+        ...state,
+        hasNextPage: action.payload,
       };
     default:
       return state;

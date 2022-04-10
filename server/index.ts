@@ -19,4 +19,4 @@ app.get("/", (req, res) => {
   res.send("server is running");
 });
 
-app.listen(PORT, () => console.log("server running on 3001"));
+app.listen(PORT, () => console.log(`server running on ${PORT}`));

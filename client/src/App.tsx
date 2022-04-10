@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NewsFeed from "./pages/NewsFeed";
 import ArticlePage from "./pages/ArticlePage";
+import NewsFeed from "./pages/Newsfeed";
 import Header from "./components/Header";
 import QuickSelection from "./components/QuickSelection";
 import Container from "@mui/material/Container";

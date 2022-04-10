@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import axios from "axios";
 
 interface Json {
-  data: Object;
+  articles: Object;
   query: string;
 }
 
@@ -41,7 +41,7 @@ const getArticles = async (
     return [];
   }
 
-  return res.json({ data: data, query: query });
+  return res.json({ articles: data, query: query });
 };
 
 const getPage = async (req: Request, res: Response): Promise<any> => {
@@ -62,12 +62,15 @@ const getPage = async (req: Request, res: Response): Promise<any> => {
     data = res.data.articles;
   } catch (error) {
     console.log(error);
-    return [];
+    return res.json({
+      message: "error",
+      data: { articles: [] },
+    });
   }
 
   return res.json({
-    message: "Page",
-    data: { data: data, page: pageNumber },
+    message: "success",
+    data: { articles: data, page: pageNumber, loading: false },
   });
 };
 
