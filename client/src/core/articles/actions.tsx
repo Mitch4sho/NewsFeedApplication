@@ -14,7 +14,3 @@ export async function getArticle(articles: [], idx: number) {
 export async function getNextPage(pageNumber: number, query: string) {
   return await articles.getNextPage(pageNumber, query);
 }
-
-export async function getPrevPage(pageNumber: number, query: string) {
-  return await articles.getPrevPage(pageNumber, query);
-}

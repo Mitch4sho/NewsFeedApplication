@@ -69,7 +69,7 @@ export default function NewsFeed(): JSX.Element {
             sx={{ fontSize: 24 }}
             ref={sentryRef}
           >
-            ...loading
+            ...Loading
           </Typography>
         ) : (
           <Typography

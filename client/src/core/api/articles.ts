@@ -12,12 +12,4 @@ export default class ArticleAPI extends APIBase {
     );
     return res;
   }
-
-  async getPrevPage(pageNumber: number, query: string): Promise<any> {
-    let res = await this.fetch(
-      `api/get-articles/get-next-page?pageNumber=${pageNumber}&q=${query}`,
-      "GET"
-    );
-    return res;
-  }
 }
