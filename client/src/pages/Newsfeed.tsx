@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import ArticleListItem from "../components/ArticleListItem";
+import QuickSelection from "../components/QuickSelection";
 import ArticleContext from "../core/articles/context";
 import { getArticles } from "../core/articles/actions";
 import { getNextPage } from "../core/articles/actions";
@@ -15,13 +16,12 @@ export default function NewsFeed(): JSX.Element {
 
   const handleNextPage = async () => {
     if (articles.length && !loading) {
-      console.log("getting the next page");
       setLoading(true);
       let res = await getNextPage(parseInt(page) + 1, currentQuery);
       let data = res.data;
 
       if (res.message !== "success") {
-        console.log("error happened getting the next page");
+        console.error("error happened getting the next page");
         return;
       }
 
@@ -52,6 +52,7 @@ export default function NewsFeed(): JSX.Element {
 
   return (
     <Box sx={{ width: "100%" }}>
+      <QuickSelection />
       <Stack spacing={2} justifyContent="center" alignItems="center">
         {articles ? (
           articles.map((article: any, idx: number) => (

@@ -13,6 +13,7 @@ export const Provider: React.FunctionComponent<{}> = ({
     currentQuery: "top-headlines",
     loading: false,
     hasNextPage: true,
+    quickMenuList: ["Top News", "Business", "Health", "Entertainment", "Kanye"],
   };
 
   const [state, dispatch] = useReducer(ArticlesReducer, initialState);

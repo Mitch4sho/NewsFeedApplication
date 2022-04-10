@@ -1,17 +1,10 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Button, Stack } from "@mui/material";
 import { getArticles } from "../core/articles/actions";
 import ArticleContext from "../core/articles/context";
 
 export default function QuickSelection(): JSX.Element {
-  const { dispatch } = useContext(ArticleContext);
-  const [list, setList] = useState([
-    "Top News",
-    "Business",
-    "Health",
-    "Entertainment",
-    "Kanye",
-  ]);
+  const { dispatch, quickMenuList } = useContext(ArticleContext);
 
   const handleQuery = async (query: string) => {
     query = query === "Top News" ? "top-headlines" : query;
@@ -21,7 +14,7 @@ export default function QuickSelection(): JSX.Element {
 
   return (
     <Stack spacing={2} direction="row" justifyContent="center" sx={{ mb: 5 }}>
-      {list.map((item, id) => (
+      {quickMenuList.map((item: string, id: number) => (
         <Button onClick={() => handleQuery(item)} variant="contained" key={id}>
           {item}
         </Button>
