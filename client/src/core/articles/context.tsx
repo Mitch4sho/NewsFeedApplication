@@ -14,6 +14,7 @@ export const Provider: React.FunctionComponent<{}> = ({
     loading: false,
     hasNextPage: true,
     quickMenuList: ["Top News", "Business", "Health", "Entertainment", "Kanye"],
+    scrollPos: { x: 0, y: 0 },
   };
 
   const [state, dispatch] = useReducer(ArticlesReducer, initialState);

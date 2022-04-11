@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 
 export default function NewsFeed(): JSX.Element {
   const [loading, setLoading] = useState(false);
-  const { articles, dispatch, currentQuery, page, hasNextPage } =
+  const { articles, dispatch, currentQuery, page, hasNextPage, scrollPos } =
     useContext(ArticleContext);
 
   const handleNextPage = async () => {

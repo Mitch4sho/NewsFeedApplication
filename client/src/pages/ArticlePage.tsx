@@ -7,10 +7,14 @@ import { Typography, Link, Container, Button } from "@mui/material";
 
 export default function ArticlePage(): JSX.Element {
   const navigation = useNavigate();
-  const { article } = useContext(ArticleContext);
+  const { article, scrollPos } = useContext(ArticleContext);
   const { author, description, publishedAt, title, urlToImage, source, url } =
     article;
   const date = getDate(publishedAt);
+
+  const handleBackBtn = () => {
+    navigation("/");
+  };
 
   return (
     <Container>
@@ -18,7 +22,7 @@ export default function ArticlePage(): JSX.Element {
         {source.name}
       </Typography>
       <Button
-        onClick={() => navigation("/")}
+        onClick={() => handleBackBtn()}
         variant="contained"
         sx={{ mb: 3 }}
       >
@@ -45,7 +49,7 @@ export default function ArticlePage(): JSX.Element {
       >
         Click here for the full article
       </Link>
-      <Button onClick={() => navigation("/")} variant="contained">
+      <Button onClick={() => handleBackBtn()} variant="contained">
         Go back to news feed
       </Button>
     </Container>

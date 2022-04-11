@@ -37,6 +37,11 @@ const ArticlesReducer = (state: any, action: ActionTypes) => {
         ...state,
         hasNextPage: action.payload,
       };
+    case "SET_SCROLL_POS":
+      return {
+        ...state,
+        scrollPos: action.payload,
+      };
     default:
       return state;
   }

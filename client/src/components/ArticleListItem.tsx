@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ArticleContext from "../core/articles/context";
 import ImageComponent from "./ImageComponent";
 import { useNavigate } from "react-router-dom";
@@ -24,13 +24,14 @@ export default function ArticleListItem({
   urlToImage,
   idx,
 }: Props): JSX.Element {
-  const { articles, dispatch } = useContext(ArticleContext);
+  const { articles, dispatch, scrollPos } = useContext(ArticleContext);
   let navigate = useNavigate();
 
   const handleClick = async () => {
     const article = await getArticle(articles, idx);
     dispatch({ type: "GET_ARTICLE", payload: article });
     navigate("/article");
+    window.scrollTo(0, 0);
   };
 
   return (
