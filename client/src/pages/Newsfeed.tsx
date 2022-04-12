@@ -51,7 +51,7 @@ export default function NewsFeed(): JSX.Element {
   }, []);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box>
       <QuickSelection />
       <Stack spacing={2} justifyContent="center" alignItems="center">
         {articles ? (

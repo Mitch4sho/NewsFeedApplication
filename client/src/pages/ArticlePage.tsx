@@ -1,9 +1,10 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import ArticleContext from "../core/articles/context";
 import ImageComponent from "../components/ImageComponent";
 import { getDate } from "../utils";
-import { useNavigate } from "react-router-dom";
 import { Typography, Link, Container, Button } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function ArticlePage(): JSX.Element {
   const navigation = useNavigate();
@@ -11,14 +12,15 @@ export default function ArticlePage(): JSX.Element {
   const { author, description, publishedAt, title, urlToImage, source, url } =
     article;
   const date = getDate(publishedAt);
+  const desktopView = useMediaQuery("(min-width: 668px)");
 
   const handleBackBtn = () => {
     navigation("/");
   };
 
   return (
-    <Container>
-      <Typography variant="h1" gutterBottom={true}>
+    <Container sx={{ mb: 3 }}>
+      <Typography variant={desktopView ? "h1" : "h3"} gutterBottom={true}>
         {source.name}
       </Typography>
       <Button
@@ -29,7 +31,7 @@ export default function ArticlePage(): JSX.Element {
         Go back to news feed
       </Button>
       <ImageComponent image={urlToImage} />
-      <Typography variant="h3" gutterBottom={true}>
+      <Typography variant={desktopView ? "h3" : "h4"} gutterBottom={true}>
         {title}
       </Typography>
       <Typography variant="body1" gutterBottom={true}>
@@ -44,7 +46,7 @@ export default function ArticlePage(): JSX.Element {
         underline="none"
         target="_blank"
         rel="noreferrer"
-        variant="h3"
+        variant={desktopView ? "h3" : "h4"}
         gutterBottom={true}
       >
         Click here for the full article

@@ -1,10 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import ArticleContext from "../core/articles/context";
 import ImageComponent from "./ImageComponent";
-import { useNavigate } from "react-router-dom";
 import { getArticle } from "../core/articles/actions";
 import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 type Props = {
   title: string;
@@ -24,8 +25,9 @@ export default function ArticleListItem({
   urlToImage,
   idx,
 }: Props): JSX.Element {
-  const { articles, dispatch, scrollPos } = useContext(ArticleContext);
+  const { articles, dispatch } = useContext(ArticleContext);
   let navigate = useNavigate();
+  const desktopView = useMediaQuery("(min-width: 668px)");
 
   const handleClick = async () => {
     const article = await getArticle(articles, idx);
@@ -40,9 +42,10 @@ export default function ArticleListItem({
       component="li"
       sx={{
         border: 1,
-        width: 900,
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+        width: desktopView ? 1000 : null,
         listStyle: "none",
-        padding: 5,
+        padding: desktopView ? 5 : 2,
         borderRadius: 5,
 
         "&:hover": {

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Box } from "@mui/system";
-import Container from "@mui/material/Container";
+import { useState, useEffect } from "react";
+import { getDate } from "../utils";
 import { Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { getDate } from "../utils";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const [date, setDate] = useState("");
+  const desktopView = useMediaQuery("(min-width: 668px)");
 
-  // retrieve todays date
   useEffect(() => {
     setDate(getDate());
   }, []);
@@ -23,8 +22,8 @@ export default function Header() {
         borderBottom: 1,
       }}
     >
-      <Typography variant="h1">{date}</Typography>
-      <Typography variant="h1">News</Typography>
+      <Typography variant={desktopView ? "h1" : "h3"}>{date}</Typography>
+      <Typography variant={desktopView ? "h1" : "h3"}>News</Typography>
     </Stack>
   );
 }
